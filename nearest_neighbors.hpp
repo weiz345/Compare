@@ -3,6 +3,9 @@
 #include <algorithm>
 #include <cmath>
 #include <cstddef>
+#include <memory>
+#include <stdexcept>
+#include <string>
 #include <vector>
 
 struct Neighbor {
@@ -10,14 +13,21 @@ struct Neighbor {
     float distance;
 };
 
-class BruteForceNN {
+class NearestNeighbors {
 public:
-    void build(const std::vector<std::vector<float>>& points) {
+    virtual ~NearestNeighbors() = default;
+
+    virtual void build(const std::vector<std::vector<float>>& points) = 0;
+    virtual std::vector<Neighbor> query(const std::vector<float>& point, int k) const = 0;
+};
+
+class BruteForceNN : public NearestNeighbors {
+public:
+    void build(const std::vector<std::vector<float>>& points) override {
         points_ = points;
     }
 
-    // Return up to k nearest neighbors, sorted by ascending distance.
-    std::vector<Neighbor> query(const std::vector<float>& point, int k) const {
+    std::vector<Neighbor> query(const std::vector<float>& point, int k) const override {
         if (points_.empty() || k <= 0) {
             return {};
         }
@@ -55,3 +65,11 @@ private:
 
     std::vector<std::vector<float>> points_;
 };
+
+inline std::unique_ptr<NearestNeighbors> create_index(const std::string& algo) {
+    if (algo == "brute_force") {
+        return std::make_unique<BruteForceNN>();
+    }
+
+    throw std::runtime_error("unknown algorithm: " + algo);
+}

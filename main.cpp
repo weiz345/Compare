@@ -3,8 +3,8 @@
 #include <iostream>
 
 int main() {
-    BruteForceNN index;
-    index.build({
+    std::unique_ptr<NearestNeighbors> index = create_index("brute_force");
+    index->build({
         {0.0f, 0.0f},
         {1.0f, 0.0f},
         {0.0f, 1.0f},
@@ -13,7 +13,7 @@ int main() {
 
     const std::vector<float> query = {0.9f, 0.1f};
 
-    for (const Neighbor& neighbor : index.query(query, 2)) {
+    for (const Neighbor& neighbor : index->query(query, 2)) {
         std::cout << "index=" << neighbor.index << " distance=" << neighbor.distance << '\n';
     }
 

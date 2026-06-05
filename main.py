@@ -1,8 +1,8 @@
-from nearest_neighbors import BruteForceNN
+from nearest_neighbors import create_index
 
 
 def main() -> None:
-    index = BruteForceNN()
+    index = create_index("brute_force")
     index.build([
         [0.0, 0.0],
         [1.0, 0.0],

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from math import sqrt
 from typing import Sequence
@@ -11,7 +12,17 @@ class Neighbor:
     distance: float
 
 
-class BruteForceNN:
+class NearestNeighbors(ABC):
+    @abstractmethod
+    def build(self, points: Sequence[Sequence[float]]) -> None:
+        raise NotImplementedError
+
+    @abstractmethod
+    def query(self, point: Sequence[float], k: int) -> list[Neighbor]:
+        raise NotImplementedError
+
+
+class BruteForceNN(NearestNeighbors):
     def __init__(self) -> None:
         self._points: list[list[float]] = []
 
@@ -28,6 +39,13 @@ class BruteForceNN:
         ]
         candidates.sort(key=lambda neighbor: neighbor.distance)
         return candidates[: min(k, len(candidates))]
+
+
+def create_index(algo: str) -> NearestNeighbors:
+    if algo == "brute_force":
+        return BruteForceNN()
+
+    raise ValueError(f"unknown algorithm: {algo}")
 
 
 def _l2_distance(a: Sequence[float], b: Sequence[float]) -> float:

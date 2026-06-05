@@ -4,19 +4,22 @@ Minimal **exact** k-nearest-neighbors implementations in Python and C++, with a 
 
 ## API
 
-Both implementations expose two methods:
+Both languages define a common abstract interface with two methods:
 
 ```python
-index = BruteForceNN()
-index.build(points)       # store point cloud
-index.query(point, k)     # top-k neighbors by L2 distance
+class NearestNeighbors(ABC):
+    def build(self, points): ...
+    def query(self, point, k) -> list[Neighbor]: ...
 ```
 
 ```cpp
-BruteForceNN index;
-index.build(points);
-index.query(point, k);   // returns vector<Neighbor{index, distance}>
+class NearestNeighbors {
+  virtual void build(const std::vector<std::vector<float>>& points) = 0;
+  virtual std::vector<Neighbor> query(const std::vector<float>& point, int k) const = 0;
+};
 ```
+
+Implementations are created by name via `create_index("brute_force")`. Currently available: **`brute_force`**.
 
 Verification compares **indices only** (not distances).
 
@@ -44,13 +47,14 @@ python3 main.py   # Python
 ### Verify equivalence
 
 ```bash
-python3 verify.py
+python3 verify.py                      # default: --algo brute_force
+python3 verify.py --algo brute_force
 ```
 
 Expected output:
 
 ```
-PASS: Python and C++ agree on all 15 query result(s).
+PASS: Python and C++ agree on all 15 query result(s) using algo='brute_force'.
 ```
 
 ## Project layout
@@ -134,6 +138,6 @@ See `test_plan.txt` for the intended cases and expected indices.
 ## Run test runners individually
 
 ```bash
-python3 run_script.py script.cases
-./build/run_script script.cases
+python3 run_script.py script.cases --algo brute_force
+./build/run_script script.cases --algo brute_force
 ```
