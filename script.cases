@@ -1,0 +1,73 @@
+# test 1: basic_knn
+build
+0 0
+1 0
+0 1
+5 5
+query 0.9 0.1 k 2
+
+# test 2: empty_index
+build
+query 0 0 k 3
+
+# test 3: non_positive_k
+build
+0 0
+1 1
+query 0 0 k 0
+query 0 0 k -1
+
+# test 4: k_larger_than_n
+build
+0 0
+1 1
+query 0 0 k 10
+
+# test 5: k_equals_one
+build
+0 0
+3 4
+5 5
+query 0.1 0.1 k 1
+
+# test 6: query_exact_match
+build
+2 3
+7 8
+query 2 3 k 2
+
+# test 7: mismatched_dimensions
+build
+0 0
+1 1
+query 0 0 99 k 2
+
+# test 8: rebuild_replaces_index
+build
+0 0
+1 0
+query 0.9 0.1 k 1
+build
+5 5
+query 0 0 k 1
+
+# test 9: rebuild_to_empty
+build
+0 0
+1 1
+query 0 0 k 1
+build
+query 0 0 k 1
+
+# test 10: single_point
+build
+3 4
+query 0 0 k 1
+
+# test 11: repeated_queries
+build
+0 0
+1 0
+0 1
+query 0.9 0.1 k 2
+query 0.1 0.9 k 2

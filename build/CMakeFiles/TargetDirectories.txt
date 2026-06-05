@@ -1,0 +1,4 @@
+/Users/weihangzheng/Desktop/compare/build/CMakeFiles/demo.dir
+/Users/weihangzheng/Desktop/compare/build/CMakeFiles/run_script.dir
+/Users/weihangzheng/Desktop/compare/build/CMakeFiles/edit_cache.dir
+/Users/weihangzheng/Desktop/compare/build/CMakeFiles/rebuild_cache.dir
