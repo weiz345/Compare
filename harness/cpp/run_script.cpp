@@ -28,7 +28,7 @@ void run_script(const std::string& path, const std::string& algo) {
 }
 
 struct RunnerOptions {
-    std::string script_path = "script.cases";
+    std::string script_path = "harness/script.cases";
     std::string algo = kDefaultAlgo;
 };
 

@@ -3,16 +3,27 @@ from __future__ import annotations
 
 import argparse
 import difflib
+import os
 import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
-SCRIPT_FILE = ROOT / "script.cases"
+ROOT = Path(__file__).resolve().parent.parent
+HARNESS_DIR = ROOT / "harness"
+SCRIPT_FILE = HARNESS_DIR / "script.cases"
+PYTHON_RUNNER = HARNESS_DIR / "python" / "run_script.py"
 CPP_RUNNER = ROOT / "build" / "run_script"
 BUILD_DIR = ROOT / "build"
 DEFAULT_ALGO = "brute_force"
+
+
+def python_env() -> dict[str, str]:
+    env = os.environ.copy()
+    extra = str(ROOT / "ann" / "python")
+    existing = env.get("PYTHONPATH", "")
+    env["PYTHONPATH"] = extra if not existing else f"{extra}{os.pathsep}{existing}"
+    return env
 
 
 @dataclass(frozen=True)
@@ -105,9 +116,10 @@ def build_cpp() -> None:
 
 def capture_python_output(script_file: Path, algo: str) -> str:
     return subprocess.check_output(
-        [sys.executable, str(ROOT / "run_script.py"), str(script_file), "--algo", algo],
+        [sys.executable, str(PYTHON_RUNNER), str(script_file), "--algo", algo],
         text=True,
         cwd=ROOT,
+        env=python_env(),
     )
 
 

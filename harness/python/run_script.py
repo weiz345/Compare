@@ -2,13 +2,19 @@
 from __future__ import annotations
 
 import argparse
+import sys
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+HARNESS_DIR = ROOT / "harness"
+sys.path.insert(0, str(ROOT / "ann" / "python"))
 
 from algorithms import create_index
 from ann_interface import NearestNeighbors
 from script_loader import BuildOp, QueryOp, load_script
 
 DEFAULT_ALGO = "brute_force"
+DEFAULT_SCRIPT = HARNESS_DIR / "script.cases"
 
 
 def run_script(path: Path, algo: str = DEFAULT_ALGO) -> None:
@@ -31,8 +37,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "script",
         nargs="?",
-        default="script.cases",
-        help="path to script.cases (default: script.cases)",
+        default=str(DEFAULT_SCRIPT),
+        help="path to script.cases (default: harness/script.cases)",
     )
     parser.add_argument(
         "--algo",
@@ -44,10 +50,9 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    root = Path(__file__).resolve().parent
     script_path = Path(args.script)
     if not script_path.is_absolute():
-        script_path = root / script_path
+        script_path = ROOT / script_path
 
     run_script(script_path, args.algo)
 

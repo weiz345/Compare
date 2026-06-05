@@ -69,28 +69,28 @@ include CMakeFiles/demo.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/demo.dir/flags.make
 
-CMakeFiles/demo.dir/main.cpp.o: CMakeFiles/demo.dir/flags.make
-CMakeFiles/demo.dir/main.cpp.o: /Users/weihangzheng/Desktop/compare/main.cpp
-CMakeFiles/demo.dir/main.cpp.o: CMakeFiles/demo.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/weihangzheng/Desktop/compare/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/demo.dir/main.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/demo.dir/main.cpp.o -MF CMakeFiles/demo.dir/main.cpp.o.d -o CMakeFiles/demo.dir/main.cpp.o -c /Users/weihangzheng/Desktop/compare/main.cpp
+CMakeFiles/demo.dir/examples/main.cpp.o: CMakeFiles/demo.dir/flags.make
+CMakeFiles/demo.dir/examples/main.cpp.o: /Users/weihangzheng/Desktop/compare/examples/main.cpp
+CMakeFiles/demo.dir/examples/main.cpp.o: CMakeFiles/demo.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/weihangzheng/Desktop/compare/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/demo.dir/examples/main.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/demo.dir/examples/main.cpp.o -MF CMakeFiles/demo.dir/examples/main.cpp.o.d -o CMakeFiles/demo.dir/examples/main.cpp.o -c /Users/weihangzheng/Desktop/compare/examples/main.cpp
 
-CMakeFiles/demo.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/demo.dir/main.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/weihangzheng/Desktop/compare/main.cpp > CMakeFiles/demo.dir/main.cpp.i
+CMakeFiles/demo.dir/examples/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/demo.dir/examples/main.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/weihangzheng/Desktop/compare/examples/main.cpp > CMakeFiles/demo.dir/examples/main.cpp.i
 
-CMakeFiles/demo.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/demo.dir/main.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/weihangzheng/Desktop/compare/main.cpp -o CMakeFiles/demo.dir/main.cpp.s
+CMakeFiles/demo.dir/examples/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/demo.dir/examples/main.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/weihangzheng/Desktop/compare/examples/main.cpp -o CMakeFiles/demo.dir/examples/main.cpp.s
 
 # Object files for target demo
 demo_OBJECTS = \
-"CMakeFiles/demo.dir/main.cpp.o"
+"CMakeFiles/demo.dir/examples/main.cpp.o"
 
 # External object files for target demo
 demo_EXTERNAL_OBJECTS =
 
-demo: CMakeFiles/demo.dir/main.cpp.o
+demo: CMakeFiles/demo.dir/examples/main.cpp.o
 demo: CMakeFiles/demo.dir/build.make
 demo: CMakeFiles/demo.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/weihangzheng/Desktop/compare/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable demo"

@@ -142,53 +142,53 @@ run_script/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_script.dir/build.make CMakeFiles/run_script.dir/build
 .PHONY : run_script/fast
 
-main.o: main.cpp.o
-.PHONY : main.o
+examples/main.o: examples/main.cpp.o
+.PHONY : examples/main.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/main.cpp.o
-.PHONY : main.cpp.o
+examples/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/examples/main.cpp.o
+.PHONY : examples/main.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+examples/main.i: examples/main.cpp.i
+.PHONY : examples/main.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/main.cpp.i
-.PHONY : main.cpp.i
+examples/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/examples/main.cpp.i
+.PHONY : examples/main.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+examples/main.s: examples/main.cpp.s
+.PHONY : examples/main.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/main.cpp.s
-.PHONY : main.cpp.s
+examples/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/examples/main.cpp.s
+.PHONY : examples/main.cpp.s
 
-run_script.o: run_script.cpp.o
-.PHONY : run_script.o
+harness/cpp/run_script.o: harness/cpp/run_script.cpp.o
+.PHONY : harness/cpp/run_script.o
 
 # target to build an object file
-run_script.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_script.dir/build.make CMakeFiles/run_script.dir/run_script.cpp.o
-.PHONY : run_script.cpp.o
+harness/cpp/run_script.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_script.dir/build.make CMakeFiles/run_script.dir/harness/cpp/run_script.cpp.o
+.PHONY : harness/cpp/run_script.cpp.o
 
-run_script.i: run_script.cpp.i
-.PHONY : run_script.i
+harness/cpp/run_script.i: harness/cpp/run_script.cpp.i
+.PHONY : harness/cpp/run_script.i
 
 # target to preprocess a source file
-run_script.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_script.dir/build.make CMakeFiles/run_script.dir/run_script.cpp.i
-.PHONY : run_script.cpp.i
+harness/cpp/run_script.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_script.dir/build.make CMakeFiles/run_script.dir/harness/cpp/run_script.cpp.i
+.PHONY : harness/cpp/run_script.cpp.i
 
-run_script.s: run_script.cpp.s
-.PHONY : run_script.s
+harness/cpp/run_script.s: harness/cpp/run_script.cpp.s
+.PHONY : harness/cpp/run_script.s
 
 # target to generate assembly for a file
-run_script.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_script.dir/build.make CMakeFiles/run_script.dir/run_script.cpp.s
-.PHONY : run_script.cpp.s
+harness/cpp/run_script.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_script.dir/build.make CMakeFiles/run_script.dir/harness/cpp/run_script.cpp.s
+.PHONY : harness/cpp/run_script.cpp.s
 
 # Help Target
 help:
@@ -200,12 +200,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... demo"
 	@echo "... run_script"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
-	@echo "... run_script.o"
-	@echo "... run_script.i"
-	@echo "... run_script.s"
+	@echo "... examples/main.o"
+	@echo "... examples/main.i"
+	@echo "... examples/main.s"
+	@echo "... harness/cpp/run_script.o"
+	@echo "... harness/cpp/run_script.i"
+	@echo "... harness/cpp/run_script.s"
 .PHONY : help
 
 

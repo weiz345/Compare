@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/run_script.dir/run_script.cpp.o"
-  "CMakeFiles/run_script.dir/run_script.cpp.o.d"
+  "CMakeFiles/run_script.dir/harness/cpp/run_script.cpp.o"
+  "CMakeFiles/run_script.dir/harness/cpp/run_script.cpp.o.d"
   "run_script"
   "run_script.pdb"
 )

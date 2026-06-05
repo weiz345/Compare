@@ -1,6 +1,6 @@
 # ANN cross-language verifier (Python + C++)
 
-k-nearest-neighbors implementations in Python and C++ sharing a common interface and test script. Use `verify.py` to diff stdout and confirm both sides return the same top-k indices.
+k-nearest-neighbors implementations in Python and C++ sharing a common interface and test script. Use `harness/verify.py` to diff stdout and confirm both sides return the same top-k indices.
 
 ## API
 
@@ -43,21 +43,20 @@ cmake --build build
 ### Run demos
 
 ```bash
-./build/demo      # C++
-python3 main.py   # Python
+./build/demo
+PYTHONPATH=ann/python python3 examples/main.py
 ```
 
 ### Verify equivalence
 
-`verify.py` rebuilds C++ by default when any side uses `cpp`. Use `--no-build` to skip.
+`harness/verify.py` rebuilds C++ by default when any side uses `cpp`. Use `--no-build` to skip.
 
 ```bash
-python3 verify.py                                          # python:bf vs cpp:bf
-python3 verify.py --python-algo brute_force                # python:bf vs python:bf
-python3 verify.py --cpp-algo brute_force                   # cpp:bf vs cpp:bf
-python3 verify.py --left python:brute_force --right cpp:brute_force
-python3 verify.py --left python:brute_force --right python:brute_force
-python3 verify.py --no-build                               # skip cmake rebuild
+.venv/bin/python3 harness/verify.py                                          # python:bf vs cpp:bf
+.venv/bin/python3 harness/verify.py --python-algo brute_force                # python:bf vs python:bf
+.venv/bin/python3 harness/verify.py --cpp-algo brute_force                   # cpp:bf vs cpp:bf
+.venv/bin/python3 harness/verify.py --left python:brute_force --right cpp:brute_force
+.venv/bin/python3 harness/verify.py --no-build                               # skip cmake rebuild
 ```
 
 Expected output:
@@ -69,20 +68,19 @@ PASS: python:brute_force and cpp:brute_force agree on all 15 query result(s).
 ## Project layout
 
 ```
-ann_interface.hpp     C++ abstract interface (Neighbor, NearestNeighbors, l2_distance)
-ann_interface.py      Python abstract interface
-algorithms.hpp        C++ algorithms (brute_force, multiprobe) + create_index
-algorithms.py         Python algorithms (brute_force, multiprobe) + create_index
-script.cases            shared test script (single source of truth)
-script_loader.hpp       C++ parser for script.cases
-script_loader.py        Python parser for script.cases
-run_script.cpp          C++ test runner
-run_script.py           Python test runner
-verify.py               runs both runners and diffs output
-main.cpp / main.py      small demos
+ann/
+  python/               ann_interface.py, algorithms.py
+  cpp/                  ann_interface.hpp, algorithms.hpp
+harness/
+  script.cases          shared test script (single source of truth)
+  python/               script_loader.py, run_script.py
+  cpp/                  script_loader.hpp, run_script.cpp
+  verify.py             runs both runners and diffs output
+examples/
+  main.py / main.cpp    small demos
 ```
 
-## Test script format (`script.cases`)
+## Test script format (`harness/script.cases`)
 
 One file, read directly by both languages. Operations run top-to-bottom; each `build` replaces the index.
 
@@ -122,11 +120,11 @@ query k 2
 ## How verification works
 
 ```
-script.cases
-     ├── run_script.py  ──► stdout
-     └── run_script.cpp ──► stdout
-                │
-            verify.py (diff)
+harness/script.cases
+     ├── harness/python/run_script.py  ──► stdout
+     └── build/run_script (C++)        ──► stdout
+                    │
+            harness/verify.py (diff)
 ```
 
 1. Python and C++ each parse `script.cases` with their own loader.
@@ -138,15 +136,15 @@ No test data is duplicated in source code.
 
 ## Adding tests
 
-Edit `script.cases` only. Append new `build` / `query` blocks, then run:
+Edit `harness/script.cases` only. Append new `build` / `query` blocks, then run:
 
 ```bash
-python3 verify.py
+.venv/bin/python3 harness/verify.py
 ```
 
 ## Run test runners individually
 
 ```bash
-python3 run_script.py script.cases --algo brute_force
-./build/run_script script.cases --algo brute_force
+PYTHONPATH=ann/python python3 harness/python/run_script.py --algo brute_force
+./build/run_script harness/script.cases --algo brute_force
 ```
