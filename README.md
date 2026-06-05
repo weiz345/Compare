@@ -22,7 +22,7 @@ class NearestNeighbors {
 Implementations are created by name via `create_index(...)`. Currently available:
 
 - **`brute_force`** — exact L2 scan (Python and C++)
-- **`multiprobe`** — multi-probe grid ANN (Python only, ported from MultiProbeANN)
+- **`multiprobe`** — multi-probe grid ANN (Python and C++, ported from MultiProbeANN)
 
 Verification compares **indices only** (not distances).
 
