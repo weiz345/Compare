@@ -1,4 +1,4 @@
-#include "nearest_neighbors.hpp"
+#include "algorithms.hpp"
 #include "script_loader.hpp"
 
 #include <iostream>

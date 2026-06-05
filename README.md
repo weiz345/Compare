@@ -1,6 +1,6 @@
-# Brute-force nearest neighbors (Python + C++)
+# ANN cross-language verifier (Python + C++)
 
-Minimal **exact** k-nearest-neighbors implementations in Python and C++, with a shared test script to verify both return the same top-k indices.
+k-nearest-neighbors implementations in Python and C++ sharing a common interface and test script. Use `verify.py` to diff stdout and confirm both sides return the same top-k indices.
 
 ## API
 
@@ -69,8 +69,10 @@ PASS: python:brute_force and cpp:brute_force agree on all 15 query result(s).
 ## Project layout
 
 ```
-nearest_neighbors.hpp   C++ implementation (header-only)
-nearest_neighbors.py    Python implementation
+ann_interface.hpp     C++ abstract interface (Neighbor, NearestNeighbors, l2_distance)
+ann_interface.py      Python abstract interface
+algorithms.hpp        C++ algorithms (brute_force, multiprobe) + create_index
+algorithms.py         Python algorithms (brute_force, multiprobe) + create_index
 script.cases            shared test script (single source of truth)
 script_loader.hpp       C++ parser for script.cases
 script_loader.py        Python parser for script.cases
@@ -141,8 +143,6 @@ Edit `script.cases` only. Append new `build` / `query` blocks, then run:
 ```bash
 python3 verify.py
 ```
-
-See `test_plan.txt` for the intended cases and expected indices.
 
 ## Run test runners individually
 

@@ -1,4 +1,4 @@
-from nearest_neighbors import create_index
+from algorithms import create_index
 
 
 def main() -> None:

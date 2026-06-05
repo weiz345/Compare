@@ -4,7 +4,8 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from nearest_neighbors import NearestNeighbors, create_index
+from algorithms import create_index
+from ann_interface import NearestNeighbors
 from script_loader import BuildOp, QueryOp, load_script
 
 DEFAULT_ALGO = "brute_force"
