@@ -46,15 +46,21 @@ python3 main.py   # Python
 
 ### Verify equivalence
 
+`verify.py` rebuilds C++ by default when any side uses `cpp`. Use `--no-build` to skip.
+
 ```bash
-python3 verify.py                      # default: --algo brute_force
-python3 verify.py --algo brute_force
+python3 verify.py                                          # python:bf vs cpp:bf
+python3 verify.py --python-algo brute_force                # python:bf vs python:bf
+python3 verify.py --cpp-algo brute_force                   # cpp:bf vs cpp:bf
+python3 verify.py --left python:brute_force --right cpp:brute_force
+python3 verify.py --left python:brute_force --right python:brute_force
+python3 verify.py --no-build                               # skip cmake rebuild
 ```
 
 Expected output:
 
 ```
-PASS: Python and C++ agree on all 15 query result(s) using algo='brute_force'.
+PASS: python:brute_force and cpp:brute_force agree on all 15 query result(s).
 ```
 
 ## Project layout
