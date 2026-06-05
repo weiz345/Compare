@@ -44,6 +44,10 @@ class BruteForceNN(NearestNeighbors):
 def create_index(algo: str) -> NearestNeighbors:
     if algo == "brute_force":
         return BruteForceNN()
+    if algo == "multiprobe":
+        from multiprobe import MultiProbeNN
+
+        return MultiProbeNN()
 
     raise ValueError(f"unknown algorithm: {algo}")
 
